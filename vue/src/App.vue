@@ -30,13 +30,13 @@ export default {
     Hello
   },
   created() {
-    this.$http.get('/login',{
+    this.$http.post('/login',{
       username:'jack',
       password:'123'
     }).then(rep=>{
-      console.log(rep)
+      console.log(rep.data)
     },rep=>{
-      console.log(rep)
+      console.log(rep.data)
     })
   }
 }
