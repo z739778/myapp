@@ -1,21 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose'); //mongo connection
+
 /* GET home page. */
 // router.get('/', function(req, res, next) {
 //   res.render('index', { title: 'Express' });
 // });
+ 
 router.post('/login', function(req, res) {
   var username = req.body.username;
   var password = req.body.password;
   console.log(username)
   mongoose.model('myapp').findOne({ username: username }, function(err, doc) {
     if (!doc) {
-      res.status(404).send('用户名不存在');
+      res.status(200).json({"code":200,"msg":"用户名不存在"});
       console.log('用户名不存在');
     } else {
       if (doc.password !== password) {
-        res.status(404).send('密码错误');
+        res.status(200).json({"code":200,"msg":"用户名不存在"});
         console.log('密码错误');
       } else {
         req.session.user = doc;
@@ -26,10 +28,11 @@ router.post('/login', function(req, res) {
     }
   });
 });
+
 router.post('/register', function(req, res) {
   console.log('register post...');
   var postData = req.body;
-  User.findOne({ username: postData.username }, function(err, doc) {
+  mongoose.model('myapp').findOne({ username: postData.username }, function(err, doc) {
     if (err) {
       res.sendStatus(500);
     } else if (doc) {
