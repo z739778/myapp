@@ -28,6 +28,16 @@ import Hello from './components/Hello'
 export default {
   components: {
     Hello
+  },
+  created() {
+    this.$http.get('/login',{
+      username:'jack',
+      password:'123'
+    }).then(rep=>{
+      console.log(rep)
+    },rep=>{
+      console.log(rep)
+    })
   }
 }
 </script>
