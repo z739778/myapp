@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var mongoose = require('mongoose'); //mongo connection
-var user = require('../models/user')
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose'); //mongo connection
+const user = require('../models/user')
 
 /* GET home page. */
 // router.get('/', function(req, res, next) {
@@ -9,8 +9,8 @@ var user = require('../models/user')
 // });
 
 router.post('/login', function(req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
+  const username = req.body.username;
+  const password = req.body.password;
   user.fetch(function(err, user) {
     if (err) {
       console.log(err)
@@ -21,7 +21,11 @@ router.post('/login', function(req, res) {
     if (err) {
       console.log(err)
     } else {
-      res.status(200).json(doc)
+      if (doc.password === password) {
+        res.status(200).json({"code":200,"msg":"登陆成功！"})
+      }else{
+        res.status(200).json({"code":500,"msg":"账号或密码错误！"})
+      }
     }
   });
 });
