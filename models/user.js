@@ -3,11 +3,9 @@ const userSchema = require('../schemas/user')
 
 const user = mongoose.model("user", userSchema)
 
-var users = new user({
-  username: "jack",
-  password: "123",
-})
-users.save(function(err) {
-  if (err) { console.log(err) }
-})
+// var usern = new user({
+//   username:'jack',
+//   password:'1234'
+// })
+// usern.save((err=>console.log(err)))
 module.exports = user
