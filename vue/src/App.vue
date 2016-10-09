@@ -32,11 +32,15 @@ export default {
   created() {
     this.$http.post('/login',{
       username:'jack',
-      password:'123'
+      password:'1234'
     }).then(rep=>{
-      console.log(rep.data)
+      if (parseInt(rep.data.code)===200) {
+        console.log("登陆成功")
+      }else{
+        console.log("登陆失败")
+      }
     },rep=>{
-      console.log(rep.data)
+      console.log(rep)
     })
   }
 }

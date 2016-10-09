@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost/myapp');
+const mongoose = require('mongoose');
+const db = mongoose.connect('mongodb://localhost/myapp');
 
 //链接数据库提示
 db.connection.on("error", function(error) {
